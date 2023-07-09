@@ -1,0 +1,55 @@
+DROP TABLE IF EXISTS Utilisateurs ;
+CREATE TABLE Utilisateurs (Utilisateur_id_Utilisateurs INT AUTO_INCREMENT NOT NULL,
+Nom_Utilisateurs VARCHAR(50),
+Prenom_Utilisateurs VARCHAR(50),
+Email_Utilisateurs VARCHAR(100),
+Password_Utilisateurs VARCHAR,
+RoleUser_Utilisateurs VARCHAR,
+PRIMARY KEY (Utilisateur_id_Utilisateurs)) ENGINE=InnoDB;
+
+DROP TABLE IF EXISTS Film ;
+CREATE TABLE Film (Film_id_Film INT AUTO_INCREMENT NOT NULL,
+Titre_Film VARCHAR(50),
+Durée_Film TIME,
+Année_Film YEAR,
+PRIMARY KEY (Film_id_Film)) ENGINE=InnoDB;
+
+DROP TABLE IF EXISTS Acteurs ;
+CREATE TABLE Acteurs (Acteur_id_Acteur INT AUTO_INCREMENT NOT NULL,
+Nom_Acteur VARCHAR(50),
+Prenom_Acteur VARCHAR(50),
+Birthday_Acteur DATE,
+PRIMARY KEY (Acteur_id_Acteur)) ENGINE=InnoDB;
+
+DROP TABLE IF EXISTS Réalisateurs ;
+CREATE TABLE Réalisateurs (Réalisateur_id_Réalisateurs INT AUTO_INCREMENT NOT NULL,
+Nom_Réalisateurs VARCHAR(50),
+Prenom_Réalisateurs VARCHAR(50),
+PRIMARY KEY (Réalisateur_id_Réalisateurs)) ENGINE=InnoDB;
+
+DROP TABLE IF EXISTS Films_préféré ;
+CREATE TABLE Films_préféré (Utilisateur_id_Utilisateurs **NOT FOUND** AUTO_INCREMENT NOT NULL,
+Film_id_Film **NOT FOUND** NOT NULL,
+PRIMARY KEY (Utilisateur_id_Utilisateurs,
+ Film_id_Film)) ENGINE=InnoDB;
+
+DROP TABLE IF EXISTS Acteur_film ;
+CREATE TABLE Acteur_film (Film_id_Film **NOT FOUND** AUTO_INCREMENT NOT NULL,
+Acteur_id_Acteur **NOT FOUND** NOT NULL,
+Rôle_Acteurs Rôle VARCHAR,
+PRIMARY KEY (Film_id_Film,
+ Acteur_id_Acteur)) ENGINE=InnoDB;
+
+DROP TABLE IF EXISTS Réalisateur_film ;
+CREATE TABLE Réalisateur_film (Film_id_Film **NOT FOUND** AUTO_INCREMENT NOT NULL,
+Réalisateur_id_Réalisateurs **NOT FOUND** NOT NULL,
+PRIMARY KEY (Film_id_Film,
+ Réalisateur_id_Réalisateurs)) ENGINE=InnoDB;
+
+ALTER TABLE Films_préféré ADD CONSTRAINT FK_Films_préféré_Utilisateur_id_Utilisateurs FOREIGN KEY (Utilisateur_id_Utilisateurs) REFERENCES Utilisateurs (Utilisateur_id_Utilisateurs);
+
+ALTER TABLE Films_préféré ADD CONSTRAINT FK_Films_préféré_Film_id_Film FOREIGN KEY (Film_id_Film) REFERENCES Film (Film_id_Film);
+ALTER TABLE Acteur_film ADD CONSTRAINT FK_Acteur_film_Film_id_Film FOREIGN KEY (Film_id_Film) REFERENCES Film (Film_id_Film);
+ALTER TABLE Acteur_film ADD CONSTRAINT FK_Acteur_film_Acteur_id_Acteur FOREIGN KEY (Acteur_id_Acteur) REFERENCES Acteurs (Acteur_id_Acteur);
+ALTER TABLE Réalisateur_film ADD CONSTRAINT FK_Réalisateur_film_Film_id_Film FOREIGN KEY (Film_id_Film) REFERENCES Film (Film_id_Film);
+ALTER TABLE Réalisateur_film ADD CONSTRAINT FK_Réalisateur_film_Réalisateur_id_Réalisateurs FOREIGN KEY (Réalisateur_id_Réalisateurs) REFERENCES Réalisateurs (Réalisateur_id_Réalisateurs);

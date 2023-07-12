@@ -1,0 +1,35 @@
+// Les titres et dates de sortie des films du plus récent au plus ancien
+
+SELECT Titre_Film, Année_Film from Film ORDER BY Année_Film DESC;
+
+// Les noms, prénoms et âges des acteurs ou actrices de plus de 30 ans dans l'ordre alphabétique
+
+SELECT Nom_Acteur, Prenom_Acteur, ROUND(DATEDIFF(NOW(), Birthday_Acteur) / 365) AS Age_Acteur FROM Acteurs WHERE ROUND(DATEDIFF(NOW(), Birthday_Acteur) / 365) > 30 order by Nom_Acteur ASC;
+
+// La liste des actrices ou acteurs principaux pour un film donné
+
+SELECT Film.`Titre_Film`, Acteurs.* FROM Film LEFT JOIN Acteur_film ON Acteur_film.Film_id_Film = Film.Film_id_Film LEFT JOIN Acteurs ON Acteur_film.Acteur_id_Acteur = Acteurs.Acteur_id_Acteur WHERE Film.Titre_Film = 'Spiderman';
+
+// La liste des films pour une actrice ou un acteur donné
+
+SELECT Film.`Titre_Film`, Acteurs.* FROM Film LEFT JOIN Acteur_film ON Acteur_film.Film_id_Film = Film.Film_id_Film LEFT JOIN Acteurs ON Acteur_film.Acteur_id_Acteur = Acteurs.Acteur_id_Acteur WHERE Acteurs.Nom_Acteur = 'Pratt';
+
+// Ajouter un film
+
+INSERT INTO Film (Titre_Film, Durée_Film, Année_Film) VALUES ("Les Avengers", "02:23:00", 2012);
+
+// Ajouter une actrice ou un acteur
+
+INSERT INTO Acteurs (Nom_Acteur, Prenom_Acteur, Birthday_Acteur) VALUES ("Downey", "Robert", "1975-06-27");
+
+// Modifier un film
+
+UPDATE Film SET Titre_Film = "HULK" WHERE Titre_Film = "L'Incroyable Hulk";
+
+// Supprimer une actrice ou un acteur
+
+DELETE FROM Acteurs WHERE Nom_Acteur = "Downey";
+
+// Afficher les 3 derniers acteurs/actrices ajouté(e)s 
+
+SELECT Nom_Acteur, Prenom_Acteur, Birthday_Acteur FROM Acteurs ORDER BY Acteur_id_Acteur DESC LIMIT 3;​

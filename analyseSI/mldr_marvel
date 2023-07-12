@@ -1,8 +1,0 @@
-# Modèle créé le : Sun Jul 09 23:57:14 CEST 2023 
-Utilisateurs (Utilisateur_id_Utilisateurs, Nom_Utilisateurs, Prenom_Utilisateurs, Email_Utilisateurs, Password_Utilisateurs, RoleUser_Utilisateurs) 
-Film (Film_id_Film, Titre_Film, Durée_Film, Année_Film) 
-Acteurs (Acteur_id_Acteur, Nom_Acteur, Prenom_Acteur, Birthday_Acteur) 
-Réalisateurs (Réalisateur_id_Réalisateurs, Nom_Réalisateurs, Prenom_Réalisateurs) 
-Films_préféré (Utilisateur_id_Utilisateurs, Film_id_Film) 
-Acteur_film (Film_id_Film, Acteur_id_Acteur, Rôle_Acteurs_Rôle) 
-Réalisateur_film (Film_id_Film, Réalisateur_id_Réalisateurs) 
